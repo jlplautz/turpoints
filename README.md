@@ -59,7 +59,7 @@ This project is based on Udemy DRF Course
 
 ## Django project
   - django-admin startproject pontos_turisticos .
-  - mng startapp core
+  - (.venv) tpoints $ mng startapp core
     - models.py -> Class PontoTuristico(): nome, descricao, disponivel
     - admin.py  -> @admin.register(PontoTuristico) ...
     - INSTALLED_APPS  -> 'core',
@@ -71,7 +71,7 @@ This project is based on Udemy DRF Course
 
 ### heroku Deployment
   - ALLOWED_HOSTS = []=> ALLOWED_HOSTS = ['*']
-  - file Procfile -> web: gunicorn pontos_turisticos.wsgi --log-file -
+  - file Procfile -> web: gunicorn turpoints.wsgi --log-file -
   - heroku apps:create turisticspoints
   - poetry export -o requirements.txt --without-hashes
   - git add -A
