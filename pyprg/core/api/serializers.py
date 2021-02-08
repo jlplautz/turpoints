@@ -1,8 +1,8 @@
 from rest_framework.serializers import ModelSerializer
-from core.models import TurPoint
+from pyprg.core.models import TurPoint
 
 
-class TurPointSerializer(ModelSerializer):
+class TurPointsSerializer(ModelSerializer):
     class Meta:
         model = TurPoint
-        fields = ['id', 'name', 'description', 'available']
+        fields = ['id', 'name', 'description', 'available', 'resources', 'location']
