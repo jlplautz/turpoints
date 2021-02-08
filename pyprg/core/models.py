@@ -1,6 +1,6 @@
 from django.db import models
 from pyprg.resources.models import Resource
-# from comments.models import Comment
+from pyprg.comments.models import Comment
 # from evaluation.models import Evalution
 from pyprg.location.models import Location
 
@@ -10,7 +10,7 @@ class TurPoint(models.Model):
     description = models.TextField()
     available = models.BooleanField(default=False)
     resources = models.ManyToManyField(Resource)
-    # comments = models.ManyToManyField(Comment)
+    comments = models.ManyToManyField(Comment)
     # evaluation = models.ManyToManyField(Evalution)
     location = models.ForeignKey(Location, on_delete=models.CASCADE, null=True, blank=True)
 

@@ -41,9 +41,10 @@ INSTALLED_APPS = [
     'collectfast',
     'django.contrib.staticfiles',
     'rest_framework',
+    'pyprg.comments',
     'pyprg.core',
-    'pyprg.resources',
     'pyprg.location',
+    'pyprg.resources',
 ]
 
 MIDDLEWARE = [
