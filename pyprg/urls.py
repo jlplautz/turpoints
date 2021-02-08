@@ -17,10 +17,12 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
 from pyprg.core.api.viewsets import TurPointsViewSet
+from pyprg.resources.api.viewsets import ResourcesViewSet
 
 
 router = routers.DefaultRouter()
 router.register(r'turpoints', TurPointsViewSet)
+router.register(r'resources', ResourcesViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
