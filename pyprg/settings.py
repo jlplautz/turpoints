@@ -38,9 +38,12 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'collectfast',
     'django.contrib.staticfiles',
+    'rest_framework',
     'pyprg.core',
     'pyprg.resources',
+    'pyprg.location',
 ]
 
 MIDDLEWARE = [
@@ -127,6 +130,8 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'mediafiles')
 
 AWS_ACCESS_KEY_ID = config('AWS_ACCESS_KEY_ID')
+
+COLLECTFAST_ENABLED = False
 
 # STORAGE CONFIGURATION IN S3 AWS
 # ================================================================
