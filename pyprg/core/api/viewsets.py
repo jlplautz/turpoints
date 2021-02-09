@@ -7,5 +7,8 @@ class TurPointsViewSet(ModelViewSet):
     """
     A simple Viewset for viewing abd editing accounts
     """
-    queryset = TurPoint.objects.all()
+    # queryset = TurPoint.objects.filter(available=True)
     serializer_class = TurPointsSerializer
+
+    def get_queryset(self):
+        return TurPoint.objects.filter(available=True)

@@ -1,7 +1,6 @@
 # turpoints
 This project is based on Udemy DRF Course
 
-
 # Conceitos:
   - API -> Application Programming Interface
     -  E um conjunto de rotinas e padroes estabelecidos por uma aplicação qualquer,
@@ -31,6 +30,41 @@ This project is based on Udemy DRF Course
     - YAML
     - XML
     
+##  Como criar as rotas np DRF
+    - No file urls.py 
+      - from rest_framework import routers
+      - from pyprg.core.api.viewsets import TurPointsViewSet
+      - router = routers.DefaultRouter()
+      - router.register(r'turpoints', TurPointsViewSet)
+    
+    - file api/viewsets.py
+      - from rest_framework.viewsets import ModelViewSet 
+      - from pyprg.evaluation.models import Evaluation
+      - from pyprg.evaluation.api.serializers import EvaluationSerializer
+        
+      - class TurPointsViewSet(ModelViewSet):
+      -    """ A simple Viewset for viewing abd editing accounts """
+      -    queryset = TurPoint.objects.all()
+      -    serializer_class = TurPointsSerializer
+    - file api/serializers.py
+      - from rest_framework.serializers import ModelSerializer
+      - from pyprg.core.models import TurPoint
+
+      - class TurPointsSerializer(ModelSerializer):
+      -    class Meta:
+      -    model = TurPoint
+      -    fields = ['id', 'name', 'description', 'available', 'resources', 'location']
+
+##  Como implementar filtros na viewsets.py
+    - mais simples
+       -  queryset = TurPoint.objects.all() -->  queryset = TurPoint.objects.filter(approuved=True)
+  
+    - outra possibilidade e ctarves do metodo get_queryset()
+       -     def get_queryset(self):
+       -         return TurPoint.objects.filter(available=True)
+       - file urls.py inserir o basename
+       - >> router.register(r'turpoints', TurPointsViewSet, basename='Turpoints')
+
 # Poetry comandos
   - poetry new meuprojeto
   - cd meuprojeto
@@ -39,7 +73,7 @@ This project is based on Udemy DRF Course
   - poetru add django@latest   # instalar a ultima versão do django
   - arquivo poetry.lock tem todos as dependencia do projeto com os respestivo hashss
   - poetry install   # para atualisar as dependencias e se tiver o arquivo poetry.lock será atualizado
-  - git init       # para fazer um projeto git 
+  - git init         # para fazer um projeto git 
   - git add meuprojeto
   - poetry build   # para gerar um arquivo tar.gz (um distribuição simples) e outro arquivo whl (compilada)
     Uma pasta dist é criada na raiz do projeto
@@ -77,5 +111,6 @@ This project is based on Udemy DRF Course
   - git add -A
   - git commit -m "teste"
   - git push heroku 7:master -f
+
 
 

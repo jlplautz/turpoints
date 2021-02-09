@@ -18,11 +18,18 @@ from django.urls import path, include
 from rest_framework import routers
 from pyprg.core.api.viewsets import TurPointsViewSet
 from pyprg.resources.api.viewsets import ResourcesViewSet
+from pyprg.location.api.viewsets import LocationViewSet
+from pyprg.evaluation.api.viewsets import EvaluationViewSet
+from pyprg.comments.api.viewsets import CommentsViewSet
 
 
 router = routers.DefaultRouter()
-router.register(r'turpoints', TurPointsViewSet)
+router.register(r'turpoints', TurPointsViewSet, basename='Turpoints')
+router.register(r'comments', CommentsViewSet)
+router.register(r'evaluation', EvaluationViewSet)
+router.register(r'location', LocationViewSet)
 router.register(r'resources', ResourcesViewSet)
+
 
 urlpatterns = [
     path('', include(router.urls)),
