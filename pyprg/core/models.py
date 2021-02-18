@@ -15,4 +15,4 @@ class TurPoint(models.Model):
     location = models.ForeignKey(Location, on_delete=models.CASCADE, null=True, blank=True)
 
     def __str__(self):
-        return self.name, self.location, self.resources
+        return self.name

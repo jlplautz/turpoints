@@ -22,7 +22,6 @@ from pyprg.location.api.viewsets import LocationViewSet
 from pyprg.evaluation.api.viewsets import EvaluationViewSet
 from pyprg.comments.api.viewsets import CommentsViewSet
 
-
 router = routers.DefaultRouter()
 router.register(r'turpoints', TurPointsViewSet, basename='Turpoints')
 router.register(r'comments', CommentsViewSet)
@@ -30,8 +29,8 @@ router.register(r'evaluation', EvaluationViewSet)
 router.register(r'location', LocationViewSet)
 router.register(r'resources', ResourcesViewSet)
 
-
 urlpatterns = [
     path('', include(router.urls)),
     path('admin/', admin.site.urls),
+
 ]

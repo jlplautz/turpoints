@@ -1,3 +1,7 @@
-# from django.test import TestCase
+from rest_framework.test import RequestsClient
 
-# Create your tests here.
+
+def test_apiroot():
+    client = RequestsClient()
+    response = client.get('http://localhost:8000/')
+    assert response.status_code == 200

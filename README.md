@@ -59,11 +59,28 @@ This project is based on Udemy DRF Course
     - mais simples
        -  queryset = TurPoint.objects.all() -->  queryset = TurPoint.objects.filter(approuved=True)
   
-    - outra possibilidade e ctarves do metodo get_queryset()
+    - outra possibilidade e atraves do metodo get_queryset()
        -     def get_queryset(self):
        -         return TurPoint.objects.filter(available=True)
        - file urls.py inserir o basename
        - >> router.register(r'turpoints', TurPointsViewSet, basename='Turpoints')
+
+##  Procedimento para sobre-escrever metodo GET na viewsets.py
+    -     def list(self, request, *args, **kwargs):
+    -        return Response({'Teste': 12345})
+
+##  Procedimento para sobre-escrever metodo POST na viewsets.py
+    -     def create(self, request, *args, **kwargs):
+    -       return Response({"Hello": request.data['name']})
+
+##  Procedimento para sobre-escrever metodo Delete na viewsets.py
+    -     def destroy(self, request, *args, **kwargs):
+    -        pass
+
+##  Procedimento para sobre-escrever metodo UPDATE na viewsets.py
+    -     def retrieve(self, request, *args, **kwargs):
+    -        pass
+
 
 # Poetry comandos
   - poetry new meuprojeto
