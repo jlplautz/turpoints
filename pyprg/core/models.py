@@ -13,6 +13,7 @@ class TurPoint(models.Model):
     comments = models.ManyToManyField(Comment)
     evaluation = models.ManyToManyField(Evaluation)
     location = models.ForeignKey(Location, on_delete=models.CASCADE, null=True, blank=True)
+    foto = models.ImageField(upload_to='turpoints', null=True, blank=True)
 
     def __str__(self):
         return self.name

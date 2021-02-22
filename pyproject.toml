@@ -15,6 +15,7 @@ psycopg2-binary = "^2.8.6"
 django-s3-folder-storage = "^0.5"
 Collectfast = "^2.2.0"
 requests = "^2.25.1"
+Pillow = "^8.1.0"
 
 [tool.poetry.dev-dependencies]
 flake8 = "^3.8.4"

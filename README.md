@@ -81,7 +81,11 @@ This project is based on Udemy DRF Course
     -     def retrieve(self, request, *args, **kwargs):
     -        pass
 
+##  Procedimento para denunciar um ponto turistico
+    -     def retrieve(self, request, *args, **kwargs):
+    -        pass
 
+   
 # Poetry comandos
   - poetry new meuprojeto
   - cd meuprojeto
