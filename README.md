@@ -85,7 +85,33 @@ This project is based on Udemy DRF Course
     -     def retrieve(self, request, *args, **kwargs):
     -        pass
 
-   
+##  Procedimento para filtro de um ponto turistico via querystring na url
+    - via querystring -> qdo passamos um string na url
+       - ex: localhost/turpoints/?id=8&name=Bar Batel  -> onde & é para concatenar mais de um objeto
+
+##  Procedimento para filtro de um ponto turistico via DjangoFilterBackend
+   - poetry add django-filter
+   - settings.py
+      - INSTALLED_APPS ->  'django_filters',
+      - REST_FRAMEWORK = {'DEFAULT_FILTER_BACKENDS': ('django_filters.rest_framework.DjangoFilterBackend',)}
+   - no file viwset
+      - inserir -> filter_fields = ('id', 'name', 'description') 
+    
+## Procedimento para fazer -> search via url
+   - inserir -> class TurPointsViewSet(ModelViewSet):
+      - filter_backends = (SearchFilter,)
+      - search_fields = ('name', 'description', 'location__line') -> chave extrangeira location__line1
+
+## Procedimento para fazer -> search pelo lookup_field
+   - normalmente temos o ID como lookup_field dentro do bando de dados.
+     mas podemos alterar este atraves to parametro look_file -> apontando para outro campo
+   - na class TurPointsViewSet(ModelViewSet):
+      -  lookup_field = 'name'
+      - na url -> http://localhost:8000/turpoints/Bar2/
+      - https://www.django-rest-framework.org/api-guide/filtering/
+
+
+
 # Poetry comandos
   - poetry new meuprojeto
   - cd meuprojeto

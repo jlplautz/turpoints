@@ -1,5 +1,6 @@
 from rest_framework.decorators import action
 from rest_framework.viewsets import ModelViewSet
+from rest_framework.filters import SearchFilter
 from pyprg.core.models import TurPoint
 from pyprg.core.api.serializers import TurPointsSerializer
 
@@ -8,12 +9,26 @@ class TurPointsViewSet(ModelViewSet):
     """
     A simple Viewset for viewing the Turistics Points
     """
-    # queryset = TurPoint.objects.filter(available=True)
     serializer_class = TurPointsSerializer
-    # http_method_names = ['COPY', ]
+    filter_backends = (SearchFilter,)
+    search_fields = ('name', 'description', 'location__line1')
+    lookup_field = 'id'
 
+    # metodo para fazer queryset
     def get_queryset(self):
-        return TurPoint.objects.filter(available=True)
+        id = self.request.query_params.get('id', None)
+        name = self.request.query_params.get('name', None)
+        description = self.request.query_params.get('description', None)
+        queryset = TurPoint.objects.all()
+        if id:
+            queryset = TurPoint.objects.filter(pk=id)
+        if name:
+            # parametro __iexact -> ignore se a letra é maiuscula ou não
+            queryset = queryset.filter(name__iexact=name)
+        if description:
+            queryset = queryset.objects.filter(description__iexact=description)
+
+        return queryset
 
     # procedimento para sobre-escrever o metodo GET()
     # def list(self, request, *args, **kwargs):
