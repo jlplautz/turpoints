@@ -108,8 +108,35 @@ This project is based on Udemy DRF Course
    - na class TurPointsViewSet(ModelViewSet):
       -  lookup_field = 'name'
       - na url -> http://localhost:8000/turpoints/Bar2/
-      - https://www.django-rest-framework.org/api-guide/filtering/
 
+## Procedimento para fazer -> Token Authentication
+   - https://www.django-rest-framework.org/api-guide/authentication/
+   - Authentication pode ser aplicada globalmente na API inserindo regras no settings 
+   - ou podem ser feito individualmente classe por classe em cada view (pois podem ter regras individuais)
+   - quando temos api com funçoes é possivel usar decorator para aplicar autenticação
+
+   - Basic authentication ( via user + password) - recomendada somente para teste
+   - Token Authentication 
+     - INSTALLED_APPS ->    'rest_framework.authtoken',
+     - manage.py migrate
+     - admin -> criar os token para os users
+    
+## Procedimento para fazer -> Permissão de acesso aos endpoints
+   - https://www.django-rest-framework.org/api-guide/permissions/
+   - Permissoes pode ser aplicada globalmente na API inserindo 
+     - DEFAULT_PERMISSION_CLASSES
+        - 'rest_framework.permissions.IsAuthenticated', -> precisa que user esteja authenticado
+        - 'rest_framework.permissions.AllowAny',  -> este é o padrão todos the acesso
+    
+   - Como bloquear os endpoints
+     - class TurPointsViewSet(ModelViewSet):
+        - permission_classes = (IsAuthenticated)
+        - authentication_classes = (TokenAuthentication, )
+        - permission_classes = (IsAdminUser, )  -> for admin user access
+     - DjangoModelPermissions
+        - This permission class ties into Django's standard django.contrib.auth model permissions
+     - DjangoModelPermissionsOrAnonReadOnly
+        - Similar to DjangoModelPermissions, but also allows unauthenticated users to have read-only access to the API
 
 
 # Poetry comandos

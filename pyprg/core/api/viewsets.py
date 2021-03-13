@@ -1,5 +1,8 @@
 from rest_framework.decorators import action
 from rest_framework.viewsets import ModelViewSet
+from rest_framework.permissions import IsAuthenticated
+# from rest_framework.permissions import IsAdminUser
+from rest_framework.authentication import TokenAuthentication
 from rest_framework.filters import SearchFilter
 from pyprg.core.models import TurPoint
 from pyprg.core.api.serializers import TurPointsSerializer
@@ -11,7 +14,11 @@ class TurPointsViewSet(ModelViewSet):
     """
     serializer_class = TurPointsSerializer
     filter_backends = (SearchFilter,)
+    permission_classes = (IsAuthenticated, )
+    # permission_classes = (IsAdminUser, )
+    authentication_classes = (TokenAuthentication, )
     search_fields = ('name', 'description', 'location__line1')
+    # parametro para fazer busca na API (*** o capo para busco precisar ser unitário, somente um registro)
     lookup_field = 'id'
 
     # metodo para fazer queryset

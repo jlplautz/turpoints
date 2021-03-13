@@ -21,6 +21,7 @@ from pyprg.resources.api.viewsets import ResourcesViewSet
 from pyprg.location.api.viewsets import LocationViewSet
 from pyprg.evaluation.api.viewsets import EvaluationViewSet
 from pyprg.comments.api.viewsets import CommentsViewSet
+from rest_framework.authtoken.views import obtain_auth_token
 
 
 router = routers.DefaultRouter()
@@ -33,5 +34,6 @@ router.register(r'resources', ResourcesViewSet)
 urlpatterns = [
    path('', include(router.urls)),
    path('admin/', admin.site.urls),
+   path('api-token-auth/', obtain_auth_token),
 
 ]
